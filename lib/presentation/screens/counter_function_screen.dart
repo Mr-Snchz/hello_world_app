@@ -1,3 +1,5 @@
+import 'dart:math' as math;
+
 import 'package:flutter/material.dart';
 
 
@@ -15,28 +17,33 @@ class _CounterFunctionScreenState extends State<CounterFunctionScreen> {
     return  Scaffold(
         appBar: AppBar(
           title: const Text('Counter Function'),
-          actions: [
-            IconButton(
-            onPressed: () {
-              setState(() {
-                clickCounter = 0;
-              });
-            }, 
-            icon: Icon(Icons.refresh_rounded)
-          ),
-          ],
         ),
+
         body: Center(
           child:  Column(
-            mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.start,
             children:[ 
             Text('$clickCounter', style: TextStyle( fontSize: 160, fontWeight: FontWeight.w100)),
-             Text('click${ clickCounter == 1? '':'s'}' , style: TextStyle( fontSize: 25 ))
+             Text('click${ clickCounter == 1? '':'s'}' , style: TextStyle( fontSize: 25 )),
+             SizedBox( 
+              
+              child: Transform( 
+                alignment: Alignment.topRight,
+                transform: Matrix4.skewY( clickCounter / 10),
+                child: Container(
+                  padding: const EdgeInsets.all(8.0),
+                  color: const Color(0xFFE8581C),
+                  child: const Text('Apartment for rent!'),
+                ),
+                ),
+              
+              )
             ]
           ),
         ),
-        floatingActionButton: Column(
-          mainAxisAlignment: MainAxisAlignment.end,
+
+        floatingActionButton: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
             CustomButton(
               icon: Icons.refresh_rounded,
